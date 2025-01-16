@@ -6,40 +6,40 @@ use starknet::ContractAddress;
 pub struct Invoice {
     pub invoiceId: u256,
     pub creator: ContractAddress,
-    pub username: string,
-    pub description: string,
+    pub username: felt252,
+    pub description: felt252,
     pub amount: u256,
     pub isPaid: bool,
     pub isCancelled: bool,
     pub payer: ContractAddress,
-    pub transactionUrl: string
+    pub transactionUrl: felt252
 }
 
 
 #[derive(Drop, Copy, Serde, starknet::Store, PartialEq)]
 pub struct User {
-    pub userId: uint256, 
+    pub userId: u256, 
     pub walletAddress: ContractAddress,
-    pub username: string
+    pub username: felt252
 }
 
 #[starknet::interface]
 pub trait IPayman<TContractState> {
     fn registerUsername(
         ref self: TContractState,
-        username: string
+        username: felt252
     ) -> User;
 
 
     fn createInvoice(
         ref self: TContractState,
-        description: string,
+        description: felt252,
         amount: u256
     ) -> Invoice;
 
     fn cancelInvoice(
         ref self: TContractState,
-        invoiceId: uint256
+        invoiceId: u256
     ) -> bool;
 
     fn payInvoice(
