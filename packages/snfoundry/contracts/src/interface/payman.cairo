@@ -12,41 +12,27 @@ pub struct Invoice {
     pub isPaid: bool,
     pub isCancelled: bool,
     pub payer: ContractAddress,
-    pub transactionUrl: felt252
+    pub transactionUrl: felt252,
 }
 
 
 #[derive(Drop, Copy, Serde, starknet::Store, PartialEq)]
 pub struct User {
-    pub userId: u256, 
+    pub userId: u256,
     pub walletAddress: ContractAddress,
-    pub username: felt252
+    pub username: felt252,
 }
 
 #[starknet::interface]
 pub trait IPayman<TContractState> {
-    fn registerUsername(
-        ref self: TContractState,
-        username: felt252
-    ) -> User;
+    fn registerUsername(ref self: TContractState, username: felt252) -> User;
 
 
-    fn createInvoice(
-        ref self: TContractState,
-        description: felt252,
-        amount: u256
-    ) -> Invoice;
+    fn createInvoice(ref self: TContractState, description: felt252, amount: u256) -> Invoice;
 
-    fn cancelInvoice(
-        ref self: TContractState,
-        invoiceId: u256
-    ) -> bool;
+    fn cancelInvoice(ref self: TContractState, invoiceId: u256) -> bool;
 
-    fn payInvoice(
-        ref self: TContractState,
-        invoiceId: u256
-    ) -> bool;
-
+    fn payInvoice(ref self: TContractState, invoiceId: u256) -> bool;
 
 
     fn getInvoiceForUser(self: @TContractState, user: ContractAddress) -> Array<Invoice>;
@@ -54,5 +40,4 @@ pub trait IPayman<TContractState> {
     fn getUser(self: @TContractState, userAddress: ContractAddress) -> User;
 
     fn getInvoice(self: @TContractState, invoiceAddress: ContractAddress) -> Invoice;
-
 }
