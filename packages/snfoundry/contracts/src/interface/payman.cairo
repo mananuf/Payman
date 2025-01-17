@@ -22,8 +22,14 @@ pub struct Invoice {
 
 #[starknet::interface]
 pub trait IPayman<TContractState> {
+    // Core functions
     fn registerUsername(ref self: TContractState, username: felt252) -> User;
     fn createInvoice(ref self: TContractState, description: felt252, amount: u256) -> Invoice;
-    fn payInvoice(ref self: TContractState, invoiceId: u256) -> Invoice;
     fn cancelInvoice(ref self: TContractState, invoiceId: u256) -> Invoice;
+    fn payInvoice(ref self: TContractState, invoiceId: u256) -> Invoice;
+
+    // View functions
+    fn getInvoiceForUser(self: @TContractState, userAddress: ContractAddress) -> Array<Invoice>;
+    fn getUser(self: @TContractState, userAddress: ContractAddress) -> User;
+    fn getInvoice(self: @TContractState, invoiceId: u256) -> Invoice;
 }
