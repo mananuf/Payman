@@ -1,8 +1,13 @@
 use starknet::ContractAddress;
 
-// Data structure layout for the system
+#[derive(Copy, Drop, Serde, starknet::Store)]
+pub struct User {
+    pub userId: u256,
+    pub walletAddress: ContractAddress,
+    pub username: felt252
+}
 
-#[derive(Drop, Copy, Serde, starknet::Store)]
+#[derive(Copy, Drop, Serde, starknet::Store)]
 pub struct Invoice {
     pub invoiceId: u256,
     pub creator: ContractAddress,
@@ -12,15 +17,7 @@ pub struct Invoice {
     pub isPaid: bool,
     pub isCancelled: bool,
     pub payer: ContractAddress,
-    pub transactionUrl: felt252,
-}
-
-
-#[derive(Drop, Copy, Serde, starknet::Store, PartialEq)]
-pub struct User {
-    pub userId: u256,
-    pub walletAddress: ContractAddress,
-    pub username: felt252,
+    pub transactionUrl: felt252
 }
 
 #[starknet::interface]
