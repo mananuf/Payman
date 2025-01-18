@@ -13,6 +13,8 @@ import { devnet } from "@starknet-react/chains";
 import { SwitchTheme } from "./SwitchTheme";
 import { useAccount, useNetwork, useProvider } from "@starknet-react/core";
 import { BlockIdentifier } from "starknet";
+import logo1 from "../public/img/payman-icon.png"
+import { ConnectedAddress } from "./ConnectedAddress";
 
 type HeaderMenuLink = {
   label: string;
@@ -51,7 +53,7 @@ export const HeaderMenuLinks = () => {
               passHref
               className={`${
                 isActive
-                  ? "!bg-gradient-nav !text-white active:bg-gradient-nav shadow-md"
+                  ? "!bg-gradient-nav !text-white active:bg-gradient-nav shadow-md ml-20"
                   : ""
               } py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col hover:bg-gradient-nav hover:text-white`}
             >
@@ -65,9 +67,6 @@ export const HeaderMenuLinks = () => {
   );
 };
 
-/**
- * Site header
- */
 export const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -155,12 +154,9 @@ export const Header = () => {
               alt="SE2 logo"
               className="cursor-pointer"
               fill
-              src="/logo.svg"
+              src={logo1}
+             
             />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-Stark</span>
-            <span className="text-xs">Starknet dev stack</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
@@ -175,6 +171,7 @@ export const Header = () => {
         ) : null}
         <CustomConnectButton />
         {/* <FaucetButton /> */}
+
         <SwitchTheme
           className={`pointer-events-auto ${
             isLocalNetwork ? "mb-1 lg:mb-0" : ""

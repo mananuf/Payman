@@ -16,7 +16,8 @@
     "vercel:yolo": "vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true"
   },
   "dependencies": {
-    "@heroicons/react": "^2.1.3",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
     "@radix-ui/react-icons": "1.3.0",
     "@radix-ui/themes": "2.0.3",
     "@scaffold-stark/stark-burner": "0.1.8",
@@ -39,6 +40,8 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^7.1.2",
+    "react-toastify": "^11.0.3",
     "starknet": "6.12.1",
     "type-fest": "^4.6.0",
     "usehooks-ts": "^2.13.0",
@@ -52,6 +55,7 @@
     "@types/react": "latest",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "latest",
+    "@types/react-toastify": "^4.0.2",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-istanbul": "^2.1.1",
     "@vitest/coverage-v8": "^2.1.1",
