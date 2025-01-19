@@ -40,7 +40,14 @@ export const Footer = () => {
             )}
             {isLocalNetwork && (
               <>
-                <Faucet />
+                <Link
+              href={"/invoices"}
+              passHref
+              className="btn btn-sm font-normal gap-1 cursor-pointer border border-[#32BAC4] shadow-none"
+            >
+              <Cog8ToothIcon className="h-4 w-4 text-[#32BAC4]" />
+              <span>Create-Invoice</span>
+            </Link>
               </>
             )}
             {isMainnetNetwork && (
@@ -49,21 +56,14 @@ export const Footer = () => {
               </>
             )}
             <Link
-              href={"/configure"}
+              href={"/"}
               passHref
               className="btn btn-sm font-normal gap-1 cursor-pointer border border-[#32BAC4] shadow-none"
             >
               <Cog8ToothIcon className="h-4 w-4 text-[#32BAC4]" />
-              <span>Configure Contracts</span>
+              <span>Home</span>
             </Link>
-            {/* {nativeCurrencyPrice > 0 && (
-              <div>
-                <div className="btn btn-sm font-normal gap-1 cursor-auto border border-[#32BAC4] shadow-none">
-                  <CurrencyDollarIcon className="h-4 w-4 text-[#32BAC4]" />
-                  <span>{nativeCurrencyPrice}</span>
-                </div>
-              </div>
-            )} */}
+            
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ export const Footer = () => {
           <div className="flex justify-center items-center gap-2 text-sm w-full">
             <div className="text-center">
               <a
-                href=""
+                href="https://github.com/mananuf/Payman"
                 target="_blank"
                 rel="noreferrer"
                 className="link"
@@ -83,7 +83,7 @@ export const Footer = () => {
 
             <div className="text-center">
               <a
-                href="https://t.me/+wO3PtlRAreo4MDI9"
+                href="https://github.com/mananuf/Payman"
                 target="_blank"
                 rel="noreferrer"
                 className="link"
