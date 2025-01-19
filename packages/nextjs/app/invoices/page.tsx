@@ -2,19 +2,19 @@
 import React, { useState } from 'react';
 import { useAccount } from "@starknet-react/core";
 import { Contract } from "starknet";
+import { useRouter } from 'next/navigation';
 import abi from "../Abis/paymanAbi.json"; 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const InvoicePage = () => {
+  const router = useRouter();
   const { account } = useAccount();
   const [descriptionInput, setDescriptionInput] = useState('');
   const [amountInput, setAmountInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Contract address and instantiation
   const contractAddress = "0x037c8cf7eb75d09f8ac7659010b7cba4fa3a4655ce4b4069df64f79f2c58f594"; 
   const contract = account ? new Contract(abi, contractAddress, account) : null;
 
@@ -29,17 +29,26 @@ const InvoicePage = () => {
     setError('');
 
     try {
-      // Convert description and amount to correct types (felt for description and u256 for amount)
       const descriptionHex = Buffer.from(descriptionInput, "utf8").toString("hex");
       const amount = BigInt(amountInput);
 
-      // Call the createInvoice function in your contract
+   
       const result = await contract.invoke("createInvoice", [descriptionHex, amount.toString()]);
       
-      // Handle success: Clear the form inputs and show success toast
+    
       setDescriptionInput('');
       setAmountInput('');
-      toast.success('Invoice created successfully!');
+      
+      toast.success('Invoice created successfully!', {
+        onClose: () => {
+          router.push('/displayInvoices');
+        }
+      });
+
+      // Optional: If you want to redirect immediately without waiting for toast
+      // setTimeout(() => {
+      //   router.push('/displayInvoices');
+      // }, 1500);
 
       // Optionally log the result
       console.log('Invoice created:', result);
@@ -96,8 +105,6 @@ const InvoicePage = () => {
           {isLoading ? 'Creating...' : 'Create New'}
         </button>
       </form>
-
-      {/* Toast container */}
       <ToastContainer />
     </div>
   );
