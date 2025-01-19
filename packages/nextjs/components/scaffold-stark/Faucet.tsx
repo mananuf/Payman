@@ -11,7 +11,7 @@ import {
 } from "~~/components/scaffold-stark";
 import { useNetwork, useProvider } from "@starknet-react/core";
 import { mintEth } from "~~/services/web3/faucet";
-import { notification } from "~~/utils/scaffold-stark";
+// import { notification } from "~~/utils/scaffold-stark";
 import GenericModal from "./CustomConnectButton/GenericModal";
 
 /**
@@ -33,34 +33,34 @@ export const Faucet = () => {
       try {
         const providerInfo = await publicClient.getBlock();
       } catch (error) {
-        console.error("⚡️ ~ file: Faucet.tsx:checkChain ~ error", error);
-        notification.error(
-          <>
-            <p className="font-bold mt-0 mb-1">
-              Cannot connect to local provider
-            </p>
-            <p className="m-0">
-              - Did you forget to run{" "}
-              <code className="italic bg-base-300 text-base font-bold">
-                yarn chain
-              </code>{" "}
-              ?
-            </p>
-            <p className="mt-1 break-normal">
-              - Or you can change{" "}
-              <code className="italic bg-base-300 text-base font-bold">
-                targetNetwork
-              </code>{" "}
-              in{" "}
-              <code className="italic bg-base-300 text-base font-bold">
-                scaffold.config.ts
-              </code>
-            </p>
-          </>,
-          {
-            duration: 5000,
-          },
-        );
+        // console.error("⚡️ ~ file: Faucet.tsx:checkChain ~ error", error);
+        // (
+        //   <>
+        //     {/* <p className="font-bold mt-0 mb-1">
+        //       Cannot connect to local provider
+        //     </p> */}
+        //     <p className="m-0">
+        //       {/* - Did you forget to run{" "} */}
+        //       <code className="italic bg-base-300 text-base font-bold">
+        //         {/* yarn chain */}
+        //       </code>{" "}
+        //       {/* ? */}
+        //     </p>
+        //     <p className="mt-1 break-normal">
+        //       {/* - Or you can change{" "} */}
+        //       <code className="italic bg-base-300 text-base font-bold">
+        //         {/* targetNetwork */}
+        //       </code>{" "}
+        //       {/* in{" "} */}
+        //       <code className="italic bg-base-300 text-base font-bold">
+        //         {/* scaffold.config.ts */}
+        //       </code>
+        //     </p>
+        //   </>,
+        //   {
+        //     duration: 5000,
+        //   },
+        // );
       }
     };
     checkChain().then();
@@ -75,13 +75,13 @@ export const Faucet = () => {
     const res = await mintEth(inputAddress, sendValue);
     if (!res.new_balance) {
       setLoading(false);
-      notification.error(`${res}`);
+      (`${res}`);
       return;
     }
     setLoading(false);
     setInputAddress(undefined);
     setSendValue("");
-    notification.success("ETH sent successfully!");
+    // notification.success("ETH sent successfully!");
   };
 
   // Render only on local chain
@@ -95,19 +95,19 @@ export const Faucet = () => {
         htmlFor="faucet-modal"
         className="btn btn-sm font-normal gap-1 border border-[#32BAC4] shadow-none"
       >
-        <BanknotesIcon className="h-4 w-4 text-[#32BAC4]" />
-        <span>Faucet</span>
+        {/* <BanknotesIcon className="h-4 w-4 text-[#32BAC4]" /> */}
+        {/* <span>Faucet</span> */}
       </label>
       <input type="checkbox" id="faucet-modal" className="modal-toggle" />
       <GenericModal modalId="faucet-modal">
         <>
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-bold">Local Faucet</h3>
+            {/* <h3 className="text-xl font-bold">Local Faucet</h3> */}
             <label
               htmlFor="faucet-modal"
               className="btn btn-ghost btn-sm btn-circle"
             >
-              ✕
+              {/* ✕ */}
             </label>
           </div>
           <div className="flex flex-col gap-8">

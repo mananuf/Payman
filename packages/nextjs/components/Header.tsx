@@ -28,8 +28,13 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "Debug Contracts",
-    href: "/debug",
+    label: "Create-invoice",
+    href: "/invoices",
+    icon: <BugAntIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Display-invoice",
+    href: "/displayInvoices",
     icon: <BugAntIcon className="h-4 w-4" />,
   },
 ];
@@ -57,7 +62,7 @@ export const HeaderMenuLinks = () => {
                   : ""
               } py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col hover:bg-gradient-nav hover:text-white`}
             >
-              {icon}
+              {/* {icon} */}
               <span>{label}</span>
             </Link>
           </li>
