@@ -56,14 +56,14 @@ export const Footer = () => {
               <Cog8ToothIcon className="h-4 w-4 text-[#32BAC4]" />
               <span>Configure Contracts</span>
             </Link>
-            {nativeCurrencyPrice > 0 && (
+            {/* {nativeCurrencyPrice > 0 && (
               <div>
                 <div className="btn btn-sm font-normal gap-1 cursor-auto border border-[#32BAC4] shadow-none">
                   <CurrencyDollarIcon className="h-4 w-4 text-[#32BAC4]" />
                   <span>{nativeCurrencyPrice}</span>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -72,12 +72,12 @@ export const Footer = () => {
           <div className="flex justify-center items-center gap-2 text-sm w-full">
             <div className="text-center">
               <a
-                href="https://github.com/Scaffold-Stark/scaffold-stark-2"
+                href=""
                 target="_blank"
                 rel="noreferrer"
                 className="link"
               >
-                Fork me
+                Github
               </a>
             </div>
 
