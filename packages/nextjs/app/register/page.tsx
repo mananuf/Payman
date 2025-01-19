@@ -1,7 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { useAccount } from "@starknet-react/core";
-import { Contract } from "starknet";
+import { Contract} from "starknet";
+import { useRouter } from "next/navigation";
+
+
 import abi from "../Abis/paymanAbi.json"; 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +15,7 @@ const stringToFelt252 = (str: any) => {
 };
 
 const RegisterPage = () => {
+  const router = useRouter();
   const { account } = useAccount();
   const [username, setUsername] = useState("");
   const inputRef = useRef<HTMLInputElement>(null); 
@@ -40,16 +44,20 @@ const RegisterPage = () => {
       }
 
       const tx = await contract.registerUsername(feltUsername);
-
       console.log("Transaction submitted:", tx);
 
       const receipt = await account.waitForTransaction(tx.transaction_hash);
-
       console.log("Transaction confirmed:", receipt);
+      
+      localStorage.setItem('paymanUsername', username.trim());
+      
       toast.success("Username registered successfully!");
+      
+      // Redirect to dashboard after successful registration
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 1500); 
 
-      setUsername(""); 
-      inputRef.current?.focus(); 
     } catch (error) {
       console.error("Error while interacting with the contract:", error);
       toast.error("Failed to register the username. Please try again.");

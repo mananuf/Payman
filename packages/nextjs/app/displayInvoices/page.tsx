@@ -32,6 +32,7 @@ const DisplayInvoicesPage = () => {
 
   const rpcNodeUrl = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/y9ouA2N4KnJfXf0cIFBYCAo1DYJLAKQ7";
   const contractAddress = "0x037c8cf7eb75d09f8ac7659010b7cba4fa3a4655ce4b4069df64f79f2c58f594";
+
   const hexToBigInt = (hex: string) => {
     try {
       if (!hex || hex === "0x") return BigInt(0); 
@@ -40,6 +41,7 @@ const DisplayInvoicesPage = () => {
       return BigInt(0);
     }
   };
+
   const fetchInvoices = async () => {
     setLoading(true);
     setError(null);
@@ -60,7 +62,6 @@ const DisplayInvoicesPage = () => {
         const processedInvoices = result.map((invoice: any) => ({
           invoiceId: Number(invoice.invoiceId), 
           description: feltToString(invoice.description), 
-          // amount: invoice.amount.toString(), 
           amount: hexToBigInt(invoice.amount).toString(),
           isPaid: Boolean(invoice.isPaid), 
           isCancelled: Boolean(invoice.isCancelled), 
@@ -73,7 +74,6 @@ const DisplayInvoicesPage = () => {
     } catch (err) {
       if (err instanceof Error) {
         console.error("Error fetching invoices:", err.message);
-        // setError(` ${err.message}`);
       } else {
         console.error("Unknown error fetching invoices:", err);
         setError("Unknown error occurred while fetching invoices.");
@@ -90,7 +90,20 @@ const DisplayInvoicesPage = () => {
   }, [account]);
 
   const handleViewInvoice = (invoice: Invoice) => {
-    router.push(`/view-invoice?invoiceId=${invoice.invoiceId}`);
+    // Encode invoice data as URL parameters
+    const invoiceData = {
+      id: invoice.invoiceId,
+      description: invoice.description,
+      amount: invoice.amount,
+      status: invoice.isPaid ? 'Paid' : invoice.isCancelled ? 'Cancelled' : 'Pending'
+    };
+    
+    // Encode the data as URL parameters
+    const params = new URLSearchParams({
+      data: JSON.stringify(invoiceData)
+    }).toString();
+    
+    router.push(`/qr-code?${params}`);
   };
 
   return (
